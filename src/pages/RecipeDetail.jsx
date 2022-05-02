@@ -1,11 +1,38 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { useDocument } from '../hooks/useDocument';
+
+import TitleBar from '../components/Layout/TitleBar';
+
+//Material UI
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const RecipeDetail = () => {
   let { id } = useParams();
-  
+  const { data, loading, error } = useDocument('recipes', id)
+
+  if (!data) {
+    return (
+      <Box sx={{ flexGrow: 1 }}>
+        <TitleBar />
+        <Container>
+          <CircularProgress />
+        </Container>
+      </Box>
+    )
+  }
+
   return (
-    <div>The ID of the recipe is {id}</div>
+    <Box sx={{ flexGrow: 1 }}>
+      <TitleBar title={data.title} category={data.category}/>
+      <Container>
+        {data && <Typography variant='h4'>{data.title}</Typography>}
+      </Container>
+    </Box>
   )
 }
 

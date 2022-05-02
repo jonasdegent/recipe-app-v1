@@ -1,0 +1,4 @@
+#Gebruiken van een react-router-dom link in een MaterialUI component
+  <IconButton component={RouterLink} to="/">
+    <HomeIcon />
+  </IconButton>

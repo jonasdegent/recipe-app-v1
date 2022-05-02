@@ -9,7 +9,6 @@ import Avatar from '@mui/material/Avatar';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography'
-import Zoom from '@mui/material/Zoom';
 //Icons
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -19,7 +18,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 const RecipeCard = ({recipe}) => {
-  
   //Basic menu Material UI code
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -29,7 +27,6 @@ const RecipeCard = ({recipe}) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  //
 
   return (
       <Card sx={{ maxWidth: 345 }} elevation={3} key={recipe.id}>
