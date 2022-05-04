@@ -1,6 +1,5 @@
 import React from 'react'
-import { useCollection } from '../hooks/useCollection'
-
+import { useCollection } from '../hooks/Firestore/useCollection'
 import RecipeList from '../components/RecipeList'
 
 //Material UI imports

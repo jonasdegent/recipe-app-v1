@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { db } from '../firebase/config'
+import { db } from '../../firebase/config'
 
 //firebase imports
 import { collection, onSnapshot, where, query } from 'firebase/firestore'

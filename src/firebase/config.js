@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
+import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,9 +15,13 @@ const firebaseConfig = {
 //init Firebase
 initializeApp(firebaseConfig)
 
+//These are all for Firebase v9!
 //init Cloud Firestore database
 const db = getFirestore()
 //init Firebase Storage voor het uploaden en bewaren van foto's
 const storage = getStorage()
+//init Firebase Authentication
+const auth = getAuth()
 
-export { db, storage }
+
+export { db, storage, auth }

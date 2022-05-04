@@ -1,14 +1,12 @@
 import React from 'react'
+import Dashboard from '../../components/Layout/Dashboard'
 
 //Material UI imports
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
-
-import { Link as RouterLink } from 'react-router-dom';
 
 const TitleBar = ({title, category}) => {
   return (
@@ -30,7 +28,7 @@ const TitleBar = ({title, category}) => {
         </Link>}
         {title && <Typography color="white">{title}</Typography>}
       </Breadcrumbs>
-      <Button color="inherit">Login</Button>
+        <Dashboard />
       </Toolbar>
     </AppBar>
   )

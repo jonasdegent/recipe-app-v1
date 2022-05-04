@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useDocument } from '../hooks/useDocument';
+import { useDocument } from '../hooks/Firestore/useDocument'
 
 import TitleBar from '../components/Layout/TitleBar';
 
@@ -13,7 +13,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const RecipeDetail = () => {
   let { id } = useParams();
-  const { data, loading, error } = useDocument('recipes', id)
+  const { data } = useDocument('recipes', id)
 
   if (!data) {
     return (
@@ -28,7 +28,7 @@ const RecipeDetail = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <TitleBar title={data.title} category={data.category}/>
+      {data && <TitleBar title={data.title} category={data.category}/>}
       <Container>
         {data && <Typography variant='h4'>{data.title}</Typography>}
       </Container>
