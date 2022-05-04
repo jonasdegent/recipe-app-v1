@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { CircularProgress } from "@mui/material";
 
 export default function Login() {
   const { error, isPending, login } = useLogin()
@@ -71,16 +72,7 @@ export default function Login() {
                 Inloggen
               </Button>
             }
-            {isPending && 
-              <Button
-                disabled
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Aan het inloggen...
-              </Button>
-            }
+            {isPending && <CircularProgress />}
             {error && <p>{error}</p>}
             <Grid container justifyContent="flex-end">
               <Grid item>

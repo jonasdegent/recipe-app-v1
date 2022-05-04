@@ -1,14 +1,19 @@
 import React from 'react'
 import Dashboard from '../../components/Layout/Dashboard'
 
-//Material UI imports
+// Material UI imports
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 
+// Custom hooks
+import { useAuthContext } from "../../hooks/Authentication/useAuthContext";
+
 const TitleBar = ({title, category}) => {
+  const { user } = useAuthContext()
+
   return (
     <AppBar sx={{ marginBottom: 2 }} position="static">
       <Toolbar>
@@ -28,6 +33,7 @@ const TitleBar = ({title, category}) => {
         </Link>}
         {title && <Typography color="white">{title}</Typography>}
       </Breadcrumbs>
+        {user && <Typography>Hallo, {user.displayName}</Typography>}
         <Dashboard />
       </Toolbar>
     </AppBar>

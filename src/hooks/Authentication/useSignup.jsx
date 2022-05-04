@@ -37,7 +37,6 @@ export const useSignup = () => {
     }
 
     catch (err) {
-      setError(err.message)
       if (!isCancelled) {
         console.log(err.message)
         setError(err.message)

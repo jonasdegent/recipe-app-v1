@@ -22,7 +22,6 @@ export const useLogin = () => {
       const res = await signInWithEmailAndPassword(auth, email, password)
       dispatch({ type: 'LOGIN', payload: res.user})
 
-      setIsPending(false)
       if (!isCancelled) {
         setIsPending(false)
         setError(null)
@@ -30,8 +29,6 @@ export const useLogin = () => {
     }
     
     catch(err) {
-      setError(err.message)
-      setIsPending(false)
       if (!isCancelled) {
         console.log(err.message)
         setError(err.message)
