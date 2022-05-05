@@ -29,6 +29,7 @@ export default function Dashboard() {
   return (
     <div>
       <Button
+        sx={{ marginLeft: 1 }}
         color="inherit"
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
