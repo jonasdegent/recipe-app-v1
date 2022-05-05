@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import TitleBar from '../Layout/TitleBar'
+import TitleBar from '../Header/TitleBar'
 import { useLogin } from '../../hooks/Authentication/useLogin'
 
 //Material UI

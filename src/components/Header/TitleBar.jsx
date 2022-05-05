@@ -1,5 +1,5 @@
 import React from 'react'
-import Dashboard from '../../components/Layout/Dashboard'
+import Dashboard from './Dashboard'
 
 // Material UI imports
 import AppBar from '@mui/material/AppBar';

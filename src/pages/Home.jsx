@@ -5,7 +5,7 @@ import RecipeList from '../components/RecipeList'
 //Material UI imports
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import TitleBar from '../components/Layout/TitleBar';
+import TitleBar from '../components/Header/TitleBar';
 
 const Home = () => {
   const { documents: recipes } = useCollection('recipes')

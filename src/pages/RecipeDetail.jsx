@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useDocument } from '../hooks/Firestore/useDocument'
 
-import TitleBar from '../components/Layout/TitleBar';
+import TitleBar from '../components/Header/TitleBar';
 
 //Material UI
 import Box from '@mui/material/Box'
