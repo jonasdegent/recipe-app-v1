@@ -74,12 +74,15 @@ export default function Login() {
             }
             {isPending && <CircularProgress />}
             {error && <p>{error}</p>}
-            <Grid container justifyContent="flex-end">
-              <Grid item>
+            <Grid container justifyContent="space-around">
+              
                 <Link href="#" variant="body2">
                   Paswoord vergeten?
                 </Link>
-              </Grid>
+                <Link href="/signup" variant="body2">
+                  Nieuwe gebruiker?
+                </Link>
+              
             </Grid>
           </Box>
         </Box>

@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import RecipeDetail from './pages/RecipeDetail';
 import Signup from './components/Authentication/Signup'
 import Login from './components/Authentication/Login'
+import AddRecipe from './pages/AddRecipe'
 
 // Custom hooks
 import { useAuthContext } from "../src/hooks/Authentication/useAuthContext";
@@ -15,10 +16,11 @@ function App() {
       {authIsReady && (
         <BrowserRouter>
           <Routes>
-              <Route path="/" element={!user ? <Navigate to="/login" /> : <Home />}/>
-              <Route path="/recipe/:id" element={!user ? <Navigate to="/login" /> : <RecipeDetail />} />
+              <Route path="/" element={!user ? <Navigate to="/signup" /> : <Home />}/>
+              <Route path="/recipe/:id" element={!user ? <Navigate to="/signup" /> : <RecipeDetail />} />
               <Route path="/signup" element={user ? <Navigate to="/" /> : <Signup />}/>
-              <Route path="/login" element={user ? <Navigate to="/" /> : <Login />}/>            
+              <Route path="/login" element={user ? <Navigate to="/" /> : <Login />}/>
+              <Route path="/recepttoevoegen" element={!user ? <Navigate to="/login" /> : <AddRecipe />} />
           </Routes>
         </BrowserRouter>
       )}

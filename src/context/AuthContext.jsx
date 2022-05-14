@@ -33,9 +33,6 @@ export const AuthContextProvider = ({ children }) => {
     })
   },[])
   
-  console.log('AuthContext state:', state)
-
-
   return (
     // hier wil ik de state returnen in deze provider als een value, state wordt gespread, de dispatch functie: je doet dit op deze manier om de dispatch methode direct in de custom hooks te kunnen gebruiken om de context value up te daten
     <AuthContext.Provider value={{...state, dispatch}}>

@@ -17,23 +17,28 @@ const TitleBar = ({title, category}) => {
   return (
     <AppBar sx={{ marginBottom: 2 }} position="static">
       <Toolbar>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ flexGrow: 1 }}>
-        <Link 
-          underline="hover" 
-          color="white" 
-          href="/">
-            <Typography color="white" variant="h6" component="span">Recepten</Typography>
-        </Link>
-        {category && 
-        <Link 
-          underline="hover" 
-          color="white" 
-          href="/">
-            <Typography color="white">{category}</Typography>
-        </Link>}
-        {title && <Typography color="white">{title}</Typography>}
-      </Breadcrumbs>
-        {user && <Typography>Hallo, {user.displayName}</Typography>}
+        <Breadcrumbs aria-label="breadcrumb" sx={{ flexGrow: 1 }}>
+          <Link 
+            underline="hover" 
+            color="white" 
+            href="/">
+              <Typography color="white" variant="h6" component="span">Recepten</Typography>
+          </Link>
+          {category && 
+          <Link 
+            underline="hover" 
+            color="white" 
+            href="/">
+              <Typography color="white">{category}</Typography>
+          </Link>
+          }
+          {title && 
+          <Typography color="white">{title}</Typography>
+          }
+        </Breadcrumbs>
+        {user && 
+        <Typography>Hallo, {user.displayName}</Typography>
+        }
         <Dashboard />
       </Toolbar>
     </AppBar>

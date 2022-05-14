@@ -59,6 +59,7 @@ export default function Dashboard() {
           handleClose();
           logout()
           }}
+          key="clickfunction"
         >
           Uitloggen
         </MenuItem>
