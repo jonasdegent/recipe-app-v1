@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
 
 //firebase imports
-import { auth } from '../../firebase/config'
+import { doc, setDoc } from "firebase/firestore";
+import { db, auth } from '../../firebase/config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 export const useSignup = () => {
@@ -24,6 +25,11 @@ export const useSignup = () => {
 
       // add display name to the user
       await updateProfile(res.user, {displayName})
+
+      // create document for each user for favorites
+      await setDoc(doc(db, 'users', res.user.uid), {
+        displayName
+      })
 
       //dispatch LOGIN action, we gebruiken hier ook de login action omdat Firebase automatisch inlogged bij signup
       dispatch({ type: 'LOGIN', payload: res.user})
