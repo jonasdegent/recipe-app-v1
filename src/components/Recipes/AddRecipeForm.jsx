@@ -27,8 +27,8 @@ const defaultValues = {
   category: "Hoofdgerecht",
   allergens: [],
   ingredients: [
-    { name: 'Witloof',
-      quantity: 1,
+    { name: '',
+      quantity: 0,
       unit: ''
     }
   ],
@@ -49,7 +49,7 @@ const AddRecipeForm = () => {
   const handleRecipeSteps = (e, i) => {
     const recipeStepsClone = [...formValues.recipeSteps]
     recipeStepsClone[i] = e.target.value
-    
+
     setFormValues({
       ...formValues,
       recipeSteps: recipeStepsClone
@@ -60,6 +60,22 @@ const AddRecipeForm = () => {
     setFormValues({
       ...formValues,
       recipeSteps: [...formValues.recipeSteps, ""]
+    })
+  }
+
+  const handleIngredients = (e,i) => {
+    let ingredientsClone = [...formValues.ingredients]
+    ingredientsClone[i][e.target.name] = e.target.value
+
+    setFormValues({
+      ...formValues
+    })
+  }
+
+  const handleIngredientsCount = () => {
+    setFormValues({
+      ...formValues,
+      ingredients: [...formValues.ingredients, { name: '', quantity: 0, unit: ''}]
     })
   }
 
@@ -78,7 +94,7 @@ const AddRecipeForm = () => {
   const undupedCategories = new Set(categories);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} >
       <Card sx={{ maxWidth: 400, margin: 'auto', height: 'auto', padding: '1rem' }} elevation={3}>
         <FormControl fullWidth>
           <TextField
@@ -152,7 +168,7 @@ const AddRecipeForm = () => {
                 <TextField
                   sx={{ marginBottom: '1rem' }}
                   key={i}
-                  label="Voeg een bereiding toe"
+                  label="Voeg een bereidingsstap toe"
                   onChange={e => handleRecipeSteps(e, i)}
                   onKeyPress={e => e.key === 'Enter' && e.preventDefault()}
                   InputProps={{
@@ -167,8 +183,44 @@ const AddRecipeForm = () => {
                 />
               ))
             }
-
-
+            {
+              formValues.ingredients.map((ingredient, i)=> {
+                return (
+                  <div key={i}>
+                    <TextField
+                      sx={{ marginBottom: '1rem'}}
+                      label="Naam ingredient" 
+                      variant="standard" 
+                      value={ingredient.name}
+                      name="name"
+                      onChange={e => handleIngredients(e,i)}
+                      onKeyPress={e => e.key === 'Enter' && e.preventDefault()}
+                    />
+                    <TextField
+                      sx={{ marginBottom: '1rem'}}
+                      label="Hoeveelheid" 
+                      variant="standard" 
+                      name="quantity"
+                      onChange={e => handleIngredients(e,i)}
+                      value={ingredient.quantity}
+                      onKeyPress={e => e.key === 'Enter' && e.preventDefault()}
+                    />
+                    <TextField
+                      sx={{ marginBottom: '1rem'}}
+                      label="Eenheid" 
+                      variant="standard" 
+                      name="unit"
+                      onChange={e => handleIngredients(e,i)}
+                      value={ingredient.unit}
+                      onKeyPress={e => e.key === 'Enter' && e.preventDefault()}
+                    />
+                    <IconButton color="primary" onClick={handleIngredientsCount}>
+                      <AddIcon />
+                    </IconButton>
+                  </div>
+                )
+              })
+            }
           <Button variant="contained" color="primary" type="submit">
             Voeg recept toe
           </Button>
