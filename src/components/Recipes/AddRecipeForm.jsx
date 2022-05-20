@@ -16,6 +16,7 @@ import Chip from "@mui/material/Chip";
 import FormControl from '@mui/material/FormControl';
 import Card from '@mui/material/Card'
 import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel'
@@ -28,7 +29,7 @@ const defaultValues = {
   allergens: [],
   ingredients: [
     { name: '',
-      quantity: 0,
+      quantity: 1,
       unit: ''
     }
   ],
@@ -75,7 +76,7 @@ const AddRecipeForm = () => {
   const handleIngredientsCount = () => {
     setFormValues({
       ...formValues,
-      ingredients: [...formValues.ingredients, { name: '', quantity: 0, unit: ''}]
+      ingredients: [...formValues.ingredients, { name: '', quantity: 1, unit: ''}]
     })
   }
 
@@ -183,6 +184,7 @@ const AddRecipeForm = () => {
                 />
               ))
             }
+{/* // Ingrediënten */}
             {
               formValues.ingredients.map((ingredient, i)=> {
                 return (
@@ -216,6 +218,9 @@ const AddRecipeForm = () => {
                     />
                     <IconButton color="primary" onClick={handleIngredientsCount}>
                       <AddIcon />
+                    </IconButton>
+                    <IconButton color="primary" >
+                      <DeleteIcon />
                     </IconButton>
                   </div>
                 )
