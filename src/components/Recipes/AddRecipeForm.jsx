@@ -29,7 +29,7 @@ const defaultValues = {
   allergens: [],
   ingredients: [
     { name: '',
-      quantity: 1,
+      quantity: Number(1),
       unit: ''
     }
   ],
@@ -76,7 +76,7 @@ const AddRecipeForm = () => {
   const handleIngredientsCount = () => {
     setFormValues({
       ...formValues,
-      ingredients: [...formValues.ingredients, { name: '', quantity: 1, unit: ''}]
+      ingredients: [...formValues.ingredients, { name: '', quantity: 2, unit: ''}]
     })
   }
 
