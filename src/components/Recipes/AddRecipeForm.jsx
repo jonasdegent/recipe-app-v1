@@ -39,7 +39,7 @@ const defaultValues = {
   timing: "",
   category: "Hoofdgerecht",
   allergens: [],
-  ingredients: [{ name: "", quantity: Number(1), unit: "" }],
+  ingredients: [{ name: "", quantity: 1, unit: "" }],
   recipeSteps: [""],
   imageUrl: "",
 };
@@ -52,6 +52,7 @@ const Input = styled("input")({
 const AddRecipeForm = () => {
   const { documents: recipes } = useCollection("recipes");
   const { documents: allergens } = useCollection("allergens");
+  const { documents: categories } = useCollection("categories");
 
   const [formValues, setFormValues] = useState(defaultValues);
   const [imageUpload, setImageUpload] = useState(null);
@@ -111,7 +112,7 @@ const AddRecipeForm = () => {
     });
   };
 
-  if (!recipes) {
+  if ((!recipes, !allergens, !categories)) {
     return (
       <Box sx={{ flexGrow: 1 }}>
         <Container>
@@ -120,10 +121,6 @@ const AddRecipeForm = () => {
       </Box>
     );
   }
-
-  // Een set van de categorieen gemaakt om alle duplicates te filteren
-  const categories = recipes.map((category, index) => category.category);
-  const undupedCategories = new Set(categories);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -173,9 +170,9 @@ const AddRecipeForm = () => {
             }
             onKeyPress={(e) => e.key === "Enter" && e.preventDefault()}
           >
-            {[...undupedCategories].map((category) => (
-              <MenuItem key={category} value={category}>
-                {category}
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.name}>
+                {category.name}
               </MenuItem>
             ))}
           </TextField>
