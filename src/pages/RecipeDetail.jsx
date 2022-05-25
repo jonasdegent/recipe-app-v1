@@ -1,19 +1,18 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useDocument } from '../hooks/Firestore/useDocument'
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useDocument } from "../hooks/Firestore/useDocument";
 
-import TitleBar from '../components/Header/TitleBar';
+import TitleBar from "../components/Header/TitleBar";
 
 //Material UI
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import CircularProgress from '@mui/material/CircularProgress';
-
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const RecipeDetail = () => {
   let { id } = useParams();
-  const { data } = useDocument('recipes', id)
+  const { data } = useDocument("recipes", id);
 
   if (!data) {
     return (
@@ -23,17 +22,24 @@ const RecipeDetail = () => {
           <CircularProgress />
         </Container>
       </Box>
-    )
+    );
   }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {data && <TitleBar title={data.title} category={data.category}/>}
+      {data && <TitleBar title={data.title} category={data.category} />}
       <Container>
-        {data && <Typography variant='h4'>{data.title}</Typography>}
+        {data && (
+          <>
+            <div>
+              <Typography variant="h4">{data.title}</Typography>
+              <Typography variant="subtitle">{data.subtitle}</Typography>
+            </div>
+          </>
+        )}
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export default RecipeDetail
+export default RecipeDetail;

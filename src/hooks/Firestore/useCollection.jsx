@@ -1,34 +1,33 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from "react";
 
 //firebase imports
-import { db } from '../../firebase/config'
-import { collection, onSnapshot, where, query } from 'firebase/firestore'
+import { db } from "../../firebase/config";
+import { collection, onSnapshot, where, query } from "firebase/firestore";
 
 export const useCollection = (col, _q) => {
-  const  [documents, setDocuments] = useState(null)
-  const q = useRef(_q).current
+  const [documents, setDocuments] = useState(null);
+  const q = useRef(_q).current;
 
-  useEffect(() => {  
-    let ref = collection(db, col)
-  
+  useEffect(() => {
+    let ref = collection(db, col);
+
     if (q) {
-      ref = query(ref, where(...q))
+      ref = query(ref, where(...q));
     }
 
     const unsub = onSnapshot(ref, (snapshot) => {
-      let results = []
-      snapshot.docs.forEach(doc => {
-        results.push({...doc.data(), id: doc.id})
-      })
-      setDocuments(results)
-    })
-    
-    return () => unsub()
-  
-  }, [col, q])
-  
-  return { documents }
-}
+      let results = [];
+      snapshot.docs.forEach((doc) => {
+        results.push({ ...doc.data(), id: doc.id });
+      });
+      setDocuments(results);
+    });
+
+    return () => unsub();
+  }, [col, q]);
+
+  return { documents };
+};
 
 //onSnapshot is using realtime data, so every time something changes in the database this gets updated
 //using c instead of 'recipes' for using this hook more re-usuable, we are using _q for the query argument

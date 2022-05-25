@@ -1,38 +1,39 @@
-import React from 'react'
-import RecipeList from '../components/Recipes/RecipeList'
+import React from "react";
+import RecipeList from "../components/Recipes/RecipeList";
 
 // React Router
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from "react-router-dom";
 
 // Custom hooks
-import { useCollection } from '../hooks/Firestore/useCollection'
+import { useCollection } from "../hooks/Firestore/useCollection";
 
 //Material UI imports
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import TitleBar from '../components/Header/TitleBar';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import TitleBar from "../components/Header/TitleBar";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 const Home = () => {
-  const { documents: recipes } = useCollection('recipes')
+  const { documents: recipes } = useCollection("recipes");
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <TitleBar recipes={recipes}/>
+      <TitleBar recipes={recipes} />
       <Container>
         {recipes && <RecipeList recipes={recipes} />}
         <Fab
-          color="primary" aria-label="add"
+          color="primary"
+          aria-label="add"
           sx={{ marginTop: 2 }}
-          component={RouterLink} to="/recepttoevoegen"
+          component={RouterLink}
+          to="/recepttoevoegen"
         >
           <AddIcon />
         </Fab>
       </Container>
     </Box>
-    
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

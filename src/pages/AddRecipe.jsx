@@ -1,6 +1,6 @@
-import React from 'react'
-import TitleBar from '../components/Header/TitleBar'
-import AddRecipeForm from '../components/Recipes/AddRecipeForm'
+import React from "react";
+import TitleBar from "../components/Header/TitleBar";
+import AddRecipeForm from "../components/Recipes/AddRecipeForm";
 
 const AddRecipe = () => {
   return (
@@ -8,7 +8,7 @@ const AddRecipe = () => {
       <TitleBar />
       <AddRecipeForm />
     </>
-  )
-}
+  );
+};
 
-export default AddRecipe
+export default AddRecipe;

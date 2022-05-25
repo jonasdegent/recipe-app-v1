@@ -1,25 +1,25 @@
 import { useForm } from "react-hook-form";
-import TitleBar from '../Header/TitleBar'
-import { useLogin } from '../../hooks/Authentication/useLogin'
+import TitleBar from "../Header/TitleBar";
+import { useLogin } from "../../hooks/Authentication/useLogin";
 
 //Material UI
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 import { CircularProgress } from "@mui/material";
 
 export default function Login() {
-  const { error, isPending, login } = useLogin()
+  const { error, isPending, login } = useLogin();
   const { register, handleSubmit } = useForm();
-  const onSubmit = data => {
-    console.log(data)
-    login(data.email, data.password)
-  }
+  const onSubmit = (data) => {
+    console.log(data);
+    login(data.email, data.password);
+  };
 
   return (
     <>
@@ -28,15 +28,20 @@ export default function Login() {
         <CssBaseline />
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography component="h1" variant="h5">
             Log in
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -62,7 +67,7 @@ export default function Login() {
                 />
               </Grid>
             </Grid>
-            {!isPending && 
+            {!isPending && (
               <Button
                 type="submit"
                 fullWidth
@@ -71,18 +76,16 @@ export default function Login() {
               >
                 Inloggen
               </Button>
-            }
+            )}
             {isPending && <CircularProgress />}
             {error && <p>{error}</p>}
             <Grid container justifyContent="space-around">
-              
-                <Link href="#" variant="body2">
-                  Paswoord vergeten?
-                </Link>
-                <Link href="/signup" variant="body2">
-                  Nieuwe gebruiker?
-                </Link>
-              
+              <Link href="#" variant="body2">
+                Paswoord vergeten?
+              </Link>
+              <Link href="/signup" variant="body2">
+                Nieuwe gebruiker?
+              </Link>
             </Grid>
           </Box>
         </Box>

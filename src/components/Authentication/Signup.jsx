@@ -1,25 +1,25 @@
 import { useForm } from "react-hook-form";
-import TitleBar from '../Header/TitleBar'
-import { useSignup } from '../../hooks/Authentication/useSignup'
-import { Link as RouterLink } from 'react-router-dom';
+import TitleBar from "../Header/TitleBar";
+import { useSignup } from "../../hooks/Authentication/useSignup";
+import { Link as RouterLink } from "react-router-dom";
 
 //Material UI
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
 export default function Signup() {
   const { register, handleSubmit } = useForm();
-  const { error, isPending, signup } = useSignup()
-  const onSubmit = data => {
-    console.log(data)
-    signup(data.email, data.password, data.displayName)
-  }
+  const { error, isPending, signup } = useSignup();
+  const onSubmit = (data) => {
+    console.log(data);
+    signup(data.email, data.password, data.displayName);
+  };
 
   return (
     <>
@@ -28,15 +28,20 @@ export default function Signup() {
         <CssBaseline />
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography component="h1" variant="h5">
             Schrijf je in
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -73,17 +78,17 @@ export default function Signup() {
                 />
               </Grid>
             </Grid>
-            {!isPending && 
+            {!isPending && (
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-              Inschrijven
+                Inschrijven
               </Button>
-            }
-            {isPending && 
+            )}
+            {isPending && (
               <Button
                 fullWidth
                 variant="contained"
@@ -92,7 +97,7 @@ export default function Signup() {
               >
                 Aan het inschrijven!
               </Button>
-            }
+            )}
             {error && <p>{error}</p>}
             <Grid container justifyContent="flex-end">
               <Grid item>

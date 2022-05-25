@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../firebase/config'
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 export function useDocument(col, docu) {
   const [data, setData] = useState(null);
@@ -19,8 +19,8 @@ export function useDocument(col, docu) {
           setData(docSnap.data());
         } else {
           setData(undefined);
-          setError(true)
-          console.log('No document!');
+          setError(true);
+          console.log("No document!");
         }
       } catch (e) {
         setError(e.message);
