@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 // Custom hooks
 import { useAuthContext } from "../../hooks/Authentication/useAuthContext";
-import { useCollection } from "../../hooks/Firestore/useCollection";
 
 //Firebase Firestore database
 import {
@@ -30,14 +29,9 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = ({ recipe, singleUser }) => {
   const { user } = useAuthContext();
-  // Hier gebruik ik de useCollection hook MET een query op de ingelogde user!
-  const { documents: singleUser } = useCollection("users", [
-    "displayName",
-    "==",
-    user.displayName,
-  ]);
+
   //Basic menu Material UI code
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -123,7 +117,12 @@ const RecipeCard = ({ recipe }) => {
           aria-label="add to favorites"
           onClick={() => handleFavorites(recipe.id)}
         >
-          <FavoriteIcon />
+          {singleUser &&
+          singleUser[0].favorites.find((favorite) => favorite === recipe.id) ? (
+            <FavoriteIcon sx={{ color: "#F2C83B" }} />
+          ) : (
+            <FavoriteIcon />
+          )}
         </IconButton>
       </CardActions>
     </Card>

@@ -29,6 +29,7 @@ export const useSignup = () => {
       // create document for each user for favorites
       await setDoc(doc(db, "users", res.user.uid), {
         displayName,
+        favorites: [],
       });
 
       //dispatch LOGIN action, we gebruiken hier ook de login action omdat Firebase automatisch inlogged bij signup
