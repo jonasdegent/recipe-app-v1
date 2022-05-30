@@ -17,7 +17,6 @@ export default function Login() {
   const { error, isPending, login } = useLogin();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     login(data.email, data.password);
   };
 
