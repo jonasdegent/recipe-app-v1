@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+// Custom hooks
+import { useAuthContext } from "../../hooks/Authentication/useAuthContext";
+import { useCollection } from "../../hooks/Firestore/useCollection";
 
 //Firebase Firestore database
-import { doc, deleteDoc } from "firebase/firestore";
+import {
+  doc,
+  deleteDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
 import { db } from "../../firebase/config";
 
 //Material UI imports
@@ -22,6 +31,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 const RecipeCard = ({ recipe }) => {
+  const { user } = useAuthContext();
+  // Hier gebruik ik de useCollection hook MET een query op de ingelogde user!
+  const { documents: singleUser } = useCollection("users", [
+    "displayName",
+    "==",
+    user.displayName,
+  ]);
   //Basic menu Material UI code
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -36,6 +52,22 @@ const RecipeCard = ({ recipe }) => {
     const docRef = doc(db, "recipes", id);
     await deleteDoc(docRef);
     handleClose();
+  };
+
+  const handleFavorites = async (id) => {
+    const favorites = singleUser[0].favorites;
+    const docRef = doc(db, "users", user.uid);
+    if (favorites.find((favorite) => favorite === id)) {
+      console.log("removed from favorite");
+      await updateDoc(docRef, {
+        favorites: arrayRemove(id),
+      });
+    } else {
+      console.log("added to favorites");
+      await updateDoc(docRef, {
+        favorites: arrayUnion(id),
+      });
+    }
   };
 
   return (
@@ -87,7 +119,10 @@ const RecipeCard = ({ recipe }) => {
         />
       </Link>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton
+          aria-label="add to favorites"
+          onClick={() => handleFavorites(recipe.id)}
+        >
           <FavoriteIcon />
         </IconButton>
       </CardActions>

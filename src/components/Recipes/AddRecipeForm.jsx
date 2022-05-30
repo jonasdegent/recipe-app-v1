@@ -31,7 +31,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
-import { styled } from "@mui/material/styles";
 
 const defaultValues = {
   title: "",
@@ -43,11 +42,6 @@ const defaultValues = {
   recipeSteps: [""],
   imageUrl: "",
 };
-
-// Material UI CSS input
-const Input = styled("input")({
-  display: "none",
-});
 
 const AddRecipeForm = () => {
   const { documents: recipes } = useCollection("recipes");
@@ -264,11 +258,9 @@ const AddRecipeForm = () => {
               </div>
             );
           })}
-          <label htmlFor="contained-button-file">
-            <Input
-              accept="image/*"
-              id="contained-button-file"
-              multiple
+          <div>
+            <TextField
+              sx={{ marginBottom: "1rem" }}
               type="file"
               onChange={(e) => {
                 setImageUpload(e.target.files[0]);
@@ -282,7 +274,8 @@ const AddRecipeForm = () => {
             >
               Voeg een foto toe
             </Button>
-          </label>
+            <></>
+          </div>
           <Button variant="contained" color="primary" type="submit">
             Voeg recept toe
           </Button>
