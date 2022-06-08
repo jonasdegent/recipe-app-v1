@@ -70,29 +70,34 @@ const RecipeCard = ({ recipe, singleUser }) => {
         avatar={<Avatar>{recipe.category.charAt(0)}</Avatar>}
         action={
           <>
-            <IconButton
-              id="recipe-card-button"
-              aria-controls={open ? "recipe-card-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
-            >
-              <MoreVertIcon />
-            </IconButton>
-            <Menu
-              id="recipe-card-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                "aria-labelledby": "recipe-card-button",
-              }}
-            >
-              <MenuItem onClick={handleClose}>Bewerk</MenuItem>
-              <MenuItem onClick={() => handleDelete(recipe.id)}>
-                Verwijder
-              </MenuItem>
-            </Menu>
+            {recipe.createdBy === user.displayName && (
+              <>
+                <IconButton
+                  id="recipe-card-button"
+                  aria-controls={open ? "recipe-card-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                >
+                  <MoreVertIcon />
+                </IconButton>
+
+                <Menu
+                  id="recipe-card-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "recipe-card-button",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>Bewerk</MenuItem>
+                  <MenuItem onClick={() => handleDelete(recipe.id)}>
+                    Verwijder
+                  </MenuItem>
+                </Menu>
+              </>
+            )}
           </>
         }
         title={

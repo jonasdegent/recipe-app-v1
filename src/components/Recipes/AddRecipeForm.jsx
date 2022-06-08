@@ -2,6 +2,7 @@ import { useState } from "react";
 
 // Custom hooks
 import { useCollection } from "../../hooks/Firestore/useCollection";
+import { useAuthContext } from "../../hooks/Authentication/useAuthContext";
 
 // Firebase Firestore database
 import { db } from "../../firebase/config";
@@ -32,18 +33,21 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
 
-const defaultValues = {
-  title: "",
-  subtitle: "",
-  timing: "",
-  category: "Hoofdgerecht",
-  allergens: [],
-  ingredients: [{ name: "", quantity: 1, unit: "" }],
-  recipeSteps: [""],
-  imageUrl: "",
-};
-
 const AddRecipeForm = () => {
+  const { user } = useAuthContext();
+
+  const defaultValues = {
+    title: "",
+    subtitle: "",
+    timing: "",
+    category: "Hoofdgerecht",
+    allergens: [],
+    ingredients: [{ name: "", quantity: 1, unit: "" }],
+    recipeSteps: [""],
+    imageUrl: "",
+    createdBy: user.displayName,
+  };
+
   const { documents: recipes } = useCollection("recipes");
   const { documents: allergens } = useCollection("allergens");
   const { documents: categories } = useCollection("categories");

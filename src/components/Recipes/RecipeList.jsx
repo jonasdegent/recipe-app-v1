@@ -23,6 +23,7 @@ const RecipeList = ({ recipes }) => {
     "==",
     user.displayName,
   ]);
+
   return (
     <Box sx={gridContainer}>
       {recipes.map((recipe) => (
