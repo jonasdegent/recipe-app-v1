@@ -37,8 +37,8 @@ const RecipeDetail = () => {
                 {data.subtitle}
               </Typography>
               <ol className="recipe-detail-steps">
-                {data.recipeSteps.map((recipeStep, i) => (
-                  <li key={i}>{recipeStep}</li>
+                {data.recipeSteps.map((recipeStep) => (
+                  <li key={recipeStep.id}>{recipeStep.step}</li>
                 ))}
               </ol>
             </div>
