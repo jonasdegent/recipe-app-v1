@@ -96,14 +96,22 @@ const AddRecipeForm = () => {
         { name: "", quantity: 1, unit: "" },
       ],
     });
+    console.log(formValues);
+  };
+
+  const handleDeleteIngredient = (i) => {
+    console.log(i);
+    if (formValues.ingredients.length < 2)
+      return console.log("there is nothing to delete");
+    else {
+      console.log("still not working");
+    }
   };
 
   const uploadImage = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `${imageUpload.name + v4()}`);
+    const imageRef = ref(storage, `${v4() + imageUpload.name}`);
     uploadBytes(imageRef, imageUpload).then(() => {
-      alert("image uploaded");
-      console.log(imageRef);
       getDownloadURL(imageRef).then((url) => {
         setFormValues({ ...formValues, imageUrl: url });
       });
@@ -256,29 +264,45 @@ const AddRecipeForm = () => {
                 <IconButton color="primary" onClick={handleIngredientsCount}>
                   <AddIcon />
                 </IconButton>
-                <IconButton color="primary">
+                <IconButton
+                  color="primary"
+                  onClick={() => handleDeleteIngredient(i)}
+                >
                   <DeleteIcon />
                 </IconButton>
               </div>
             );
           })}
           <div>
-            <TextField
-              sx={{ marginBottom: "1rem" }}
-              type="file"
-              onChange={(e) => {
-                setImageUpload(e.target.files[0]);
-              }}
-            />
-            <Button
-              variant="contained"
-              component="span"
-              sx={{ marginBottom: "1rem" }}
-              onClick={uploadImage}
-            >
-              Voeg een foto toe
-            </Button>
-            <></>
+            {formValues.imageUrl ? (
+              <img
+                src={formValues.imageUrl}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  marginBottom: "1rem",
+                }}
+                alt={formValues.title}
+              />
+            ) : (
+              <>
+                <TextField
+                  sx={{ marginBottom: "1rem" }}
+                  type="file"
+                  onChange={(e) => {
+                    setImageUpload(e.target.files[0]);
+                  }}
+                />
+                <Button
+                  variant="contained"
+                  component="span"
+                  sx={{ marginBottom: "1rem" }}
+                  onClick={uploadImage}
+                >
+                  Voeg een foto toe
+                </Button>
+              </>
+            )}
           </div>
           <Button variant="contained" color="primary" type="submit">
             Voeg recept toe

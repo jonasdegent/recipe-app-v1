@@ -1,0 +1,14 @@
+.recipe-detail-container {
+  display: flex;
+  justify-content: space-around;
+}
+img {
+  width: 300px;
+}
+.recipe-detail-steps {
+  width: 600px;
+  padding: 0;
+}
+.recipe-detail-steps li {
+  margin: 1em;
+}

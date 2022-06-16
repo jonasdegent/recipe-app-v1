@@ -5,6 +5,7 @@ import Signup from "./components/Authentication/Signup";
 import Login from "./components/Authentication/Login";
 import AddRecipe from "./pages/AddRecipe";
 import RecipeCategories from "./components/Recipes/RecipeCategories";
+import EditRecipe from "./components/Recipes/EditRecipe";
 
 // Custom hooks
 import { useAuthContext } from "../src/hooks/Authentication/useAuthContext";
@@ -36,6 +37,10 @@ function App() {
             <Route
               path="/recepttoevoegen"
               element={!user ? <Navigate to="/login" /> : <AddRecipe />}
+            />
+            <Route
+              path="/receptbewerken/:id"
+              element={!user ? <Navigate to="/login" /> : <EditRecipe />}
             />
             <Route
               path="/categories/:category"

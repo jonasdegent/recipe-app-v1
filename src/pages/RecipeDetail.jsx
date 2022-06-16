@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useDocument } from "../hooks/Firestore/useDocument";
+import "./RecipeDetail.css";
 
 import TitleBar from "../components/Header/TitleBar";
 
@@ -24,21 +25,30 @@ const RecipeDetail = () => {
       </Box>
     );
   }
-
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <>
       {data && <TitleBar title={data.title} category={data.category} />}
-      <Container>
+      <div className="recipe-detail-wrapper">
         {data && (
-          <>
+          <div className="recipe-detail-container">
             <div>
               <Typography variant="h4">{data.title}</Typography>
-              <Typography variant="subtitle">{data.subtitle}</Typography>
+              <Typography sx={{ fontStyle: "italic" }} variant="subtitle">
+                {data.subtitle}
+              </Typography>
+              <ol className="recipe-detail-steps">
+                {data.recipeSteps.map((recipeStep, i) => (
+                  <li key={i}>{recipeStep}</li>
+                ))}
+              </ol>
             </div>
-          </>
+            <div className="recipe-detail-image">
+              <img src={data.imageUrl} alt={`${data.title} ${data.subtitle}`} />
+            </div>
+          </div>
         )}
-      </Container>
-    </Box>
+      </div>
+    </>
   );
 };
 

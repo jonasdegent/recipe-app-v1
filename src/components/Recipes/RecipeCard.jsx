@@ -91,7 +91,9 @@ const RecipeCard = ({ recipe, singleUser }) => {
                     "aria-labelledby": "recipe-card-button",
                   }}
                 >
-                  <MenuItem onClick={handleClose}>Bewerk</MenuItem>
+                  <Link to={`/receptbewerken/${recipe.id}`}>
+                    <MenuItem onClick={handleClose}>Bewerk</MenuItem>
+                  </Link>
                   <MenuItem onClick={() => handleDelete(recipe.id)}>
                     Verwijder
                   </MenuItem>
