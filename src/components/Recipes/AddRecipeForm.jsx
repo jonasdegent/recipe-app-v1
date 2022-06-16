@@ -42,7 +42,7 @@ const AddRecipeForm = () => {
     timing: "",
     category: "Hoofdgerecht",
     allergens: [],
-    ingredients: [{ name: "", quantity: 1, unit: "" }],
+    ingredients: [{ name: "", quantity: 1, unit: "", id: v4() }],
     recipeSteps: [""],
     imageUrl: "",
     createdBy: user.displayName,
@@ -93,19 +93,19 @@ const AddRecipeForm = () => {
       ...formValues,
       ingredients: [
         ...formValues.ingredients,
-        { name: "", quantity: 1, unit: "" },
+        { name: "", quantity: 1, unit: "", id: v4() },
       ],
     });
     console.log(formValues);
   };
 
-  const handleDeleteIngredient = (i) => {
-    console.log(i);
-    if (formValues.ingredients.length < 2)
-      return console.log("there is nothing to delete");
-    else {
-      console.log("still not working");
-    }
+  const handleDeleteIngredient = (id) => {
+    const newIngredients = [...formValues.ingredients].filter(ing => ing.id !== id)
+    
+    setFormValues({
+      ...formValues,
+      ingredients: newIngredients
+    });
   };
 
   const uploadImage = () => {
@@ -233,7 +233,7 @@ const AddRecipeForm = () => {
           {/* // Ingrediënten */}
           {formValues.ingredients.map((ingredient, i) => {
             return (
-              <div key={i}>
+              <div key={ingredient.id}>
                 <TextField
                   sx={{ marginBottom: "1rem" }}
                   label="Naam ingredient"
@@ -266,7 +266,7 @@ const AddRecipeForm = () => {
                 </IconButton>
                 <IconButton
                   color="primary"
-                  onClick={() => handleDeleteIngredient(i)}
+                  onClick={() => handleDeleteIngredient(ingredient.id)}
                 >
                   <DeleteIcon />
                 </IconButton>

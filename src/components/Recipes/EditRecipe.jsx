@@ -1,4 +1,6 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useDocument } from "../../hooks/Firestore/useDocument";
@@ -27,6 +29,12 @@ const EditRecipe = () => {
   const { data } = useDocument("recipes", id);
   const [formValues, setFormValues] = useState({});
 
+  useEffect(() => {
+    if(data) {
+      setFormValues({title: data.title, subtitle: data.subtitle, timing: data.timing})
+    }
+  }, [JSON.stringify(data)])
+
   if (!data) {
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -38,11 +46,10 @@ const EditRecipe = () => {
     );
   }
 
-  console.log(formValues);
 
   return (
     <>
-      {data && <TitleBar title={data.title} category={data.category} />}
+      <TitleBar title={data.title} category={data.category} />
       <form>
         <Card
           sx={{
@@ -58,7 +65,7 @@ const EditRecipe = () => {
               sx={{ marginBottom: "1rem" }}
               label="Naam gerecht"
               variant="standard"
-              // value={formValues.title}
+              value={formValues.title}
               onChange={(e) =>
                 setFormValues({ ...formValues, title: e.target.value })
               }
@@ -68,7 +75,7 @@ const EditRecipe = () => {
               sx={{ marginBottom: "1rem" }}
               label="Korte beschrijving"
               variant="standard"
-              // value={formValues.subtitle}
+              value={formValues.subtitle}
               onChange={(e) =>
                 setFormValues({ ...formValues, subtitle: e.target.value })
               }
@@ -78,7 +85,7 @@ const EditRecipe = () => {
               sx={{ marginBottom: "1rem" }}
               label="Kooktijd"
               variant="standard"
-              // value={formValues.timing}
+              value={formValues.timing}
               onChange={(e) =>
                 setFormValues({ ...formValues, timing: e.target.value })
               }
