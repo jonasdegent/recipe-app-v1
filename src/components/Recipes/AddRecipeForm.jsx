@@ -43,7 +43,7 @@ const AddRecipeForm = () => {
     category: "Hoofdgerecht",
     allergens: [],
     ingredients: [{ name: "", quantity: 1, unit: "", id: v4() }],
-    recipeSteps: [""],
+    recipeSteps: [{ step: "", id: v4() }],
     imageUrl: "",
     createdBy: user.displayName,
   };
@@ -64,19 +64,33 @@ const AddRecipeForm = () => {
 
   const handleRecipeSteps = (e, i) => {
     const recipeStepsClone = [...formValues.recipeSteps];
-    recipeStepsClone[i] = e.target.value;
+    recipeStepsClone[i][e.target.name] = e.target.value;
 
     setFormValues({
       ...formValues,
-      recipeSteps: recipeStepsClone,
     });
   };
 
   const handleRecipeStepsCount = () => {
     setFormValues({
       ...formValues,
-      recipeSteps: [...formValues.recipeSteps, ""],
+      recipeSteps: [...formValues.recipeSteps, { step: "", id: v4() }],
     });
+  };
+
+  const handleDeleteRecipeStep = (id) => {
+    if (formValues.recipeSteps.length <= 1)
+      return console.log("there is nothing to delete");
+    else {
+      const newRecipeSteps = [...formValues.recipeSteps].filter(
+        (step) => step.id !== id
+      );
+
+      setFormValues({
+        ...formValues,
+        recipeSteps: newRecipeSteps,
+      });
+    }
   };
 
   const handleIngredients = (e, i) => {
@@ -96,16 +110,21 @@ const AddRecipeForm = () => {
         { name: "", quantity: 1, unit: "", id: v4() },
       ],
     });
-    console.log(formValues);
   };
 
   const handleDeleteIngredient = (id) => {
-    const newIngredients = [...formValues.ingredients].filter(ing => ing.id !== id)
-    
-    setFormValues({
-      ...formValues,
-      ingredients: newIngredients
-    });
+    if (formValues.ingredients.length < 2)
+      return console.log("there is nothing to delete");
+    else {
+      const newIngredients = [...formValues.ingredients].filter(
+        (ing) => ing.id !== id
+      );
+
+      setFormValues({
+        ...formValues,
+        ingredients: newIngredients,
+      });
+    }
   };
 
   const uploadImage = () => {
@@ -211,7 +230,8 @@ const AddRecipeForm = () => {
           {formValues.recipeSteps.map((step, i) => (
             <TextField
               sx={{ marginBottom: "1rem" }}
-              key={i}
+              key={step.id}
+              name="step"
               label="Voeg een bereidingsstap toe"
               onChange={(e) => handleRecipeSteps(e, i)}
               onKeyPress={(e) => e.key === "Enter" && e.preventDefault()}
@@ -224,6 +244,12 @@ const AddRecipeForm = () => {
                       onClick={handleRecipeStepsCount}
                     >
                       <AddIcon />
+                    </IconButton>
+                    <IconButton
+                      color="primary"
+                      onClick={() => handleDeleteRecipeStep(step.id)}
+                    >
+                      <DeleteIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
