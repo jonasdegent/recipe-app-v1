@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useDocument } from "../../hooks/Firestore/useDocument";
 import { useCollection } from "../../hooks/Firestore/useCollection";
@@ -13,7 +13,7 @@ import Container from "@mui/material/Container";
 import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
-// import Button from "@mui/material/Button";
+import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Chip from "@mui/material/Chip";
@@ -24,6 +24,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
+
+// Firebase Storage
+import { storage } from "../../firebase/config";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+// Firebase Firestore database
+import { db } from "../../firebase/config";
+import { doc, updateDoc } from "firebase/firestore";
 
 // UUID
 import { v4 } from "uuid";
@@ -36,6 +44,9 @@ const EditRecipe = () => {
   const { documents: allergens } = useCollection("allergens");
 
   const [formValues, setFormValues] = useState();
+  const [imageUpload, setImageUpload] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
@@ -46,7 +57,12 @@ const EditRecipe = () => {
     console.log("no data");
   }, [JSON.stringify(data)]);
 
-  console.log(formValues);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const ref = doc(db, "recipes", id);
+    await updateDoc(ref, formValues);
+    navigate("/");
+  };
 
   const handleRecipeSteps = (e, i) => {
     const recipeStepsClone = [...formValues.recipeSteps];
@@ -113,6 +129,16 @@ const EditRecipe = () => {
     }
   };
 
+  const uploadImage = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `${v4() + imageUpload.name}`);
+    uploadBytes(imageRef, imageUpload).then(() => {
+      getDownloadURL(imageRef).then((url) => {
+        setFormValues({ ...formValues, imageUrl: url });
+      });
+    });
+  };
+
   if ((!data, !categories, !allergens)) {
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -128,7 +154,7 @@ const EditRecipe = () => {
     <>
       {data && <TitleBar title={data.title} category={data.category} />}
       {formValues && (
-        <form>
+        <form onSubmit={handleSubmit}>
           <Card
             sx={{
               maxWidth: 400,
@@ -211,37 +237,38 @@ const EditRecipe = () => {
                 ))}
               </Select>
             </FormControl>
-            {formValues.recipeSteps.map((step, i) => (
-              <TextField
-                sx={{ marginBottom: "1rem" }}
-                key={step.id}
-                name="step"
-                label="Voeg een bereidingsstap toe"
-                value={step.step}
-                onChange={(e) => handleRecipeSteps(e, i)}
-                onKeyPress={(e) => e.key === "Enter" && e.preventDefault()}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        edge="end"
-                        color="primary"
-                        onClick={handleRecipeStepsCount}
-                      >
-                        <AddIcon />
-                      </IconButton>
-                      <IconButton
-                        color="primary"
-                        onClick={() => handleDeleteRecipeStep(step.id)}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            ))}
-
+            <FormControl fullWidth>
+              {formValues.recipeSteps.map((step, i) => (
+                <TextField
+                  sx={{ marginBottom: "1rem" }}
+                  key={step.id}
+                  name="step"
+                  label="Voeg een bereidingsstap toe"
+                  value={step.step}
+                  onChange={(e) => handleRecipeSteps(e, i)}
+                  onKeyPress={(e) => e.key === "Enter" && e.preventDefault()}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          color="primary"
+                          onClick={handleRecipeStepsCount}
+                        >
+                          <AddIcon />
+                        </IconButton>
+                        <IconButton
+                          color="primary"
+                          onClick={() => handleDeleteRecipeStep(step.id)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              ))}
+            </FormControl>
             {formValues.ingredients.map((ingredient, i) => {
               return (
                 <div key={ingredient.id}>
@@ -284,6 +311,40 @@ const EditRecipe = () => {
                 </div>
               );
             })}
+            <div>
+              {formValues.imageUrl ? (
+                <img
+                  src={formValues.imageUrl}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    marginBottom: "1rem",
+                  }}
+                  alt={formValues.title}
+                />
+              ) : (
+                <>
+                  <TextField
+                    sx={{ marginBottom: "1rem" }}
+                    type="file"
+                    onChange={(e) => {
+                      setImageUpload(e.target.files[0]);
+                    }}
+                  />
+                  <Button
+                    variant="contained"
+                    component="span"
+                    sx={{ marginBottom: "1rem" }}
+                    onClick={uploadImage}
+                  >
+                    Voeg een foto toe
+                  </Button>
+                </>
+              )}
+            </div>
+            <Button variant="contained" color="primary" type="submit">
+              Bewerk recept
+            </Button>
           </Card>
         </form>
       )}

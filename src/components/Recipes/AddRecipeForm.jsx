@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+// react router
+import { useNavigate } from "react-router-dom";
+
 // Custom hooks
 import { useCollection } from "../../hooks/Firestore/useCollection";
 import { useAuthContext } from "../../hooks/Authentication/useAuthContext";
@@ -35,6 +38,7 @@ import InputLabel from "@mui/material/InputLabel";
 
 const AddRecipeForm = () => {
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const defaultValues = {
     title: "",
@@ -60,6 +64,7 @@ const AddRecipeForm = () => {
     const ref = collection(db, "recipes");
     await addDoc(ref, formValues);
     setFormValues(defaultValues);
+    navigate("/");
   };
 
   const handleRecipeSteps = (e, i) => {

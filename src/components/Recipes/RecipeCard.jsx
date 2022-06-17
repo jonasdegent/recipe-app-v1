@@ -91,7 +91,10 @@ const RecipeCard = ({ recipe, singleUser }) => {
                     "aria-labelledby": "recipe-card-button",
                   }}
                 >
-                  <Link to={`/receptbewerken/${recipe.id}`}>
+                  <Link
+                    to={`/receptbewerken/${recipe.id}`}
+                    style={{ textDecoration: "none" }}
+                  >
                     <MenuItem onClick={handleClose}>Bewerk</MenuItem>
                   </Link>
                   <MenuItem onClick={() => handleDelete(recipe.id)}>
