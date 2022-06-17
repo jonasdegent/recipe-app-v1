@@ -3,7 +3,7 @@
   justify-content: space-around;
 }
 img {
-  width: 300px;
+  width: 350px;
 }
 .recipe-detail-steps {
   width: 600px;
@@ -11,4 +11,32 @@ img {
 }
 .recipe-detail-steps li {
   margin: 1em;
+}
+
+.recipe-detail-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.recipe-detail-ingredients {
+  width: 350px;
+  margin-top: 1em;
+  background-color: #f0f0f0;
+}
+
+.recipe-detail-ingredients-list {
+  list-style: none;
+  margin: 0 0 0 0.5em;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-detail-ingredients-list li {
+  margin-bottom: 0.25em;
+}
+
+.recipe-detail-ingredients-name {
+  font-weight: 700;
 }

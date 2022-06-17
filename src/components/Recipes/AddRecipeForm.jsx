@@ -330,7 +330,7 @@ const AddRecipeForm = () => {
                   sx={{ marginBottom: "1rem" }}
                   onClick={uploadImage}
                 >
-                  Voeg een foto toe
+                  Voeg de foto toe
                 </Button>
               </>
             )}

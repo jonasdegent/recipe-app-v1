@@ -4,6 +4,7 @@ import { useDocument } from "../hooks/Firestore/useDocument";
 import "./RecipeDetail.css";
 
 import TitleBar from "../components/Header/TitleBar";
+import IngredientsList from "../components/Recipes/IngredientsList";
 
 //Material UI
 import Box from "@mui/material/Box";
@@ -27,26 +28,28 @@ const RecipeDetail = () => {
   }
   return (
     <>
-      {data && <TitleBar title={data.title} category={data.category} />}
+      <TitleBar title={data.title} category={data.category} />
       <div className="recipe-detail-wrapper">
-        {data && (
-          <div className="recipe-detail-container">
-            <div>
-              <Typography variant="h4">{data.title}</Typography>
+        <div className="recipe-detail-container">
+          <div>
+            <div className="recipe-detail-header">
+              <Typography variant="h3">{data.title}</Typography>
               <Typography sx={{ fontStyle: "italic" }} variant="subtitle">
                 {data.subtitle}
               </Typography>
-              <ol className="recipe-detail-steps">
-                {data.recipeSteps.map((recipeStep) => (
-                  <li key={recipeStep.id}>{recipeStep.step}</li>
-                ))}
-              </ol>
             </div>
-            <div className="recipe-detail-image">
-              <img src={data.imageUrl} alt={`${data.title} ${data.subtitle}`} />
-            </div>
+            <Typography variant="h4">Hoe maak je het?</Typography>
+            <ol className="recipe-detail-steps">
+              {data.recipeSteps.map((recipeStep) => (
+                <li key={recipeStep.id}>{recipeStep.step}</li>
+              ))}
+            </ol>
           </div>
-        )}
+          <span className="recipe-detail-right-content">
+            <img src={data.imageUrl} alt={`${data.title} ${data.subtitle}`} />
+            <IngredientsList id={id} ingredients={data.ingredients} />
+          </span>
+        </div>
       </div>
     </>
   );
