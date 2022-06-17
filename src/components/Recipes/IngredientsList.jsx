@@ -25,7 +25,9 @@ const IngredientsList = ({ id, ingredients }) => {
 
   return (
     <div className="recipe-detail-ingredients">
-      <Typography variant="h5">Ingrediënten</Typography>
+      <Typography variant="h5" sx={{ marginLeft: ".25em" }}>
+        Ingrediënten
+      </Typography>
       <div className="recipe-detail-counter-servings">
         <IconButton
           color="primary"

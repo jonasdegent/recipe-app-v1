@@ -38,6 +38,7 @@ const RecipeDetail = () => {
                 {data.subtitle}
               </Typography>
             </div>
+            <div>Icons allergens</div>
             <Typography variant="h4">Hoe maak je het?</Typography>
             <ol className="recipe-detail-steps">
               {data.recipeSteps.map((recipeStep) => (
