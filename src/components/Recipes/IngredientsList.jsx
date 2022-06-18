@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Material UI
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
@@ -8,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import SummarizeIcon from "@mui/icons-material/Summarize";
 
 const IngredientsList = ({ id, ingredients }) => {
   const [servings, setServings] = useState(2);
@@ -25,9 +27,16 @@ const IngredientsList = ({ id, ingredients }) => {
 
   return (
     <div className="recipe-detail-ingredients">
-      <Typography variant="h5" sx={{ marginLeft: ".25em" }}>
-        Ingrediënten
-      </Typography>
+      <div className="recipe-detail-ingredients-header">
+        <Typography variant="h5" sx={{ marginLeft: ".25em" }}>
+          Ingrediënten
+        </Typography>
+        <Link to={`/shoppinglist`} state={{ shoppingList: shoppingList }}>
+          <IconButton color="primary">
+            <SummarizeIcon />
+          </IconButton>
+        </Link>
+      </div>
       <div className="recipe-detail-counter-servings">
         <IconButton
           color="primary"

@@ -1,5 +1,6 @@
 import React from "react";
 import RecipeList from "../components/Recipes/RecipeList";
+import TitleBar from "../components/Header/TitleBar";
 import "./Home.css";
 // React Router
 import { Link as RouterLink } from "react-router-dom";
@@ -8,7 +9,6 @@ import { Link as RouterLink } from "react-router-dom";
 import { useCollection } from "../hooks/Firestore/useCollection";
 
 //Material UI imports
-import TitleBar from "../components/Header/TitleBar";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 

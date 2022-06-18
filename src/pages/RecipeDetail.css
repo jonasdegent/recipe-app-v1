@@ -15,6 +15,11 @@
   }
 }
 
+.recipe-detail-ingredients-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 img {
   width: 350px;
 }
