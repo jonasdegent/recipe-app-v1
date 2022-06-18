@@ -144,11 +144,11 @@ const AddRecipeForm = () => {
 
   if ((!recipes, !allergens, !categories)) {
     return (
-      <Box sx={{ flexGrow: 1 }}>
+      <>
         <Container>
           <CircularProgress />
         </Container>
-      </Box>
+      </>
     );
   }
 

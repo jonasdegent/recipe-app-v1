@@ -15,7 +15,6 @@ import { useAuthContext } from "../../hooks/Authentication/useAuthContext";
 
 const TitleBar = ({ title, category }) => {
   const { user } = useAuthContext();
-
   return (
     <AppBar sx={{ marginBottom: 2 }} position="static">
       <Toolbar>

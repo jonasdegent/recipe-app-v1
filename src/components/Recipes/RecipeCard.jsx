@@ -65,7 +65,11 @@ const RecipeCard = ({ recipe, singleUser }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }} elevation={3} key={recipe.id}>
+    <Card
+      sx={{ width: 375, margin: "0 1em 1em 1em" }}
+      elevation={3}
+      key={recipe.id}
+    >
       <CardHeader
         avatar={<Avatar>{recipe.category.charAt(0)}</Avatar>}
         action={

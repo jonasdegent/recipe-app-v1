@@ -1,6 +1,6 @@
 import React from "react";
 import RecipeList from "../components/Recipes/RecipeList";
-
+import "./Home.css";
 // React Router
 import { Link as RouterLink } from "react-router-dom";
 
@@ -8,8 +8,6 @@ import { Link as RouterLink } from "react-router-dom";
 import { useCollection } from "../hooks/Firestore/useCollection";
 
 //Material UI imports
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import TitleBar from "../components/Header/TitleBar";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
@@ -18,21 +16,21 @@ const Home = () => {
   const { documents: recipes } = useCollection("recipes");
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <>
       <TitleBar recipes={recipes} />
-      <Container>
+      <div className="recipes-container">
         {recipes && <RecipeList recipes={recipes} />}
         <Fab
           color="primary"
           aria-label="add"
-          sx={{ marginTop: 2 }}
+          sx={{ marginTop: 2, marginLeft: 2 }}
           component={RouterLink}
           to="/recepttoevoegen"
         >
           <AddIcon />
         </Fab>
-      </Container>
-    </Box>
+      </div>
+    </>
   );
 };
 
