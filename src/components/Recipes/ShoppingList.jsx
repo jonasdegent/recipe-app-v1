@@ -19,6 +19,7 @@ const ShoppingList = () => {
 
   return (
     <div className="shoppinglist">
+      <p>Print je lijstje!</p>
       {shoppingList.map((item, i) => (
         <ul>
           <li key={i}>{item}</li>

@@ -52,19 +52,39 @@ const TitleBar = ({ title, category }) => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <Link component={RouterLink} to={`/categories/Ontbijt`}>
+            <Link
+              component={RouterLink}
+              to={`/categories/Ontbijt`}
+              sx={{ textDecoration: "none" }}
+            >
               <MenuItem onClick={handleClose}>Ontbijt</MenuItem>
             </Link>
-            <Link component={RouterLink} to={`/categories/Voorgerecht`}>
+            <Link
+              component={RouterLink}
+              to={`/categories/Voorgerecht`}
+              sx={{ textDecoration: "none" }}
+            >
               <MenuItem onClick={handleClose}>Voorgerechten</MenuItem>
             </Link>
-            <Link component={RouterLink} to={`/categories/Hoofdgerecht`}>
+            <Link
+              component={RouterLink}
+              to={`/categories/Hoofdgerecht`}
+              sx={{ textDecoration: "none" }}
+            >
               <MenuItem onClick={handleClose}>Hoofdgerechten</MenuItem>
             </Link>
-            <Link component={RouterLink} to={`/categories/Dessert`}>
+            <Link
+              component={RouterLink}
+              to={`/categories/Dessert`}
+              sx={{ textDecoration: "none" }}
+            >
               <MenuItem onClick={handleClose}>Desserts</MenuItem>
             </Link>
-            <Link component={RouterLink} to={`/categories/Tussendoortje`}>
+            <Link
+              component={RouterLink}
+              to={`/categories/Tussendoortje`}
+              sx={{ textDecoration: "none" }}
+            >
               <MenuItem onClick={handleClose}>Tussendoortjes</MenuItem>
             </Link>
           </Menu>
