@@ -7,6 +7,7 @@ import AddRecipe from "./pages/AddRecipe";
 import RecipeCategories from "./components/Recipes/RecipeCategories";
 import EditRecipe from "./components/Recipes/EditRecipe";
 import ShoppingList from "./components/Recipes/ShoppingList";
+import FavoriteList from "./components/Recipes/FavoriteList";
 
 // Custom hooks
 import { useAuthContext } from "../src/hooks/Authentication/useAuthContext";
@@ -50,6 +51,10 @@ function App() {
             <Route
               path="/shoppinglist"
               element={!user ? <Navigate to="/login" /> : <ShoppingList />}
+            />
+            <Route
+              path="/favorieten"
+              element={!user ? <Navigate to="/login" /> : <FavoriteList />}
             />
           </Routes>
         </BrowserRouter>

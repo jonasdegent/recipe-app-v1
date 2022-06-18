@@ -18,7 +18,7 @@ const RecipeCategories = () => {
     "==",
     category,
   ]);
-  console.log(recipes);
+  console.log(category);
 
   if (!recipes) {
     return (

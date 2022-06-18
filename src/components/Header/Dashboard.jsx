@@ -66,7 +66,17 @@ export default function Dashboard() {
             Inschrijven
           </MenuItem>,
         ]}
-        {user && (
+        {user && [
+          <MenuItem
+            onClick={() => {
+              handleClose();
+            }}
+            key="favorieten"
+            component={RouterLink}
+            to="/favorieten"
+          >
+            Favorieten
+          </MenuItem>,
           <MenuItem
             onClick={() => {
               handleClose();
@@ -75,8 +85,8 @@ export default function Dashboard() {
             key="clickfunction"
           >
             Uitloggen
-          </MenuItem>
-        )}
+          </MenuItem>,
+        ]}
       </Menu>
     </div>
   );

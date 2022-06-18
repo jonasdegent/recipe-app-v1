@@ -1,6 +1,7 @@
 import React from "react";
 import RecipeList from "../components/Recipes/RecipeList";
 import TitleBar from "../components/Header/TitleBar";
+
 import "./Home.css";
 // React Router
 import { Link as RouterLink } from "react-router-dom";

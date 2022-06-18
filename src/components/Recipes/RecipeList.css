@@ -3,3 +3,9 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+.favorite-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em;
+}
