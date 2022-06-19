@@ -55,6 +55,14 @@ const TitleBar = ({ title, category }) => {
           }}
         >
           <Link
+            className="home-button-in-menu"
+            component={RouterLink}
+            to={`/`}
+            sx={{ textDecoration: "none" }}
+          >
+            <MenuItem onClick={handleClose}>Startpagina</MenuItem>
+          </Link>
+          <Link
             component={RouterLink}
             to={`/categories/Ontbijt`}
             sx={{ textDecoration: "none" }}

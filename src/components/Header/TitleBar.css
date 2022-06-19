@@ -10,4 +10,7 @@
   .breadcrumbs {
     display: flex;
   }
+  .home-button-in-menu {
+    display: none;
+  }
 }
