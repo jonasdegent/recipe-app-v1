@@ -34,8 +34,6 @@ const RecipeDetail = () => {
     return data.allergens.find((selected) => selected === allergen.name);
   });
 
-  console.log(filteredAllergens);
-
   return (
     <>
       <TitleBar title={data.title} category={data.category} />
@@ -51,9 +49,8 @@ const RecipeDetail = () => {
               </span>
               <div className="recipe-detail-allergens-header">
                 {filteredAllergens.map((allergen, i) => (
-                  <div className="recipe-detail-allergens-list">
+                  <div key={i} className="recipe-detail-allergens-list">
                     <img
-                      key={i}
                       className="recipe-detail-icon-allergen"
                       src={allergen.imageUrl}
                       alt={`icoon van het allergeen ${allergen.name}`}

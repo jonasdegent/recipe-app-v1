@@ -1,6 +1,8 @@
 import React from "react";
 import Dashboard from "./Dashboard";
 
+import "./TitleBar.css";
+
 import { Link as RouterLink } from "react-router-dom";
 
 // Material UI imports
@@ -13,6 +15,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
 
 // Custom hooks
 import { useAuthContext } from "../../hooks/Authentication/useAuthContext";
@@ -31,69 +34,70 @@ const TitleBar = ({ title, category }) => {
 
   return (
     <AppBar sx={{ marginBottom: 2 }} position="static">
-      <Toolbar>
-        <div>
-          <Button
-            color="inherit"
-            id="basic-button"
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
+      <Toolbar className="header">
+        <Button
+          color="inherit"
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          <MenuIcon />
+        </Button>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <Link
+            component={RouterLink}
+            to={`/categories/Ontbijt`}
+            sx={{ textDecoration: "none" }}
           >
-            <MenuIcon />
-          </Button>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
+            <MenuItem onClick={handleClose}>Ontbijt</MenuItem>
+          </Link>
+          <Link
+            component={RouterLink}
+            to={`/categories/Voorgerecht`}
+            sx={{ textDecoration: "none" }}
           >
-            <Link
-              component={RouterLink}
-              to={`/categories/Ontbijt`}
-              sx={{ textDecoration: "none" }}
-            >
-              <MenuItem onClick={handleClose}>Ontbijt</MenuItem>
-            </Link>
-            <Link
-              component={RouterLink}
-              to={`/categories/Voorgerecht`}
-              sx={{ textDecoration: "none" }}
-            >
-              <MenuItem onClick={handleClose}>Voorgerechten</MenuItem>
-            </Link>
-            <Link
-              component={RouterLink}
-              to={`/categories/Hoofdgerecht`}
-              sx={{ textDecoration: "none" }}
-            >
-              <MenuItem onClick={handleClose}>Hoofdgerechten</MenuItem>
-            </Link>
-            <Link
-              component={RouterLink}
-              to={`/categories/Dessert`}
-              sx={{ textDecoration: "none" }}
-            >
-              <MenuItem onClick={handleClose}>Desserts</MenuItem>
-            </Link>
-            <Link
-              component={RouterLink}
-              to={`/categories/Tussendoortje`}
-              sx={{ textDecoration: "none" }}
-            >
-              <MenuItem onClick={handleClose}>Tussendoortjes</MenuItem>
-            </Link>
-          </Menu>
-        </div>
-        <Breadcrumbs aria-label="breadcrumb" sx={{ flexGrow: 1 }}>
+            <MenuItem onClick={handleClose}>Voorgerechten</MenuItem>
+          </Link>
+          <Link
+            component={RouterLink}
+            to={`/categories/Hoofdgerecht`}
+            sx={{ textDecoration: "none" }}
+          >
+            <MenuItem onClick={handleClose}>Hoofdgerechten</MenuItem>
+          </Link>
+          <Link
+            component={RouterLink}
+            to={`/categories/Dessert`}
+            sx={{ textDecoration: "none" }}
+          >
+            <MenuItem onClick={handleClose}>Desserts</MenuItem>
+          </Link>
+          <Link
+            component={RouterLink}
+            to={`/categories/Tussendoortje`}
+            sx={{ textDecoration: "none" }}
+          >
+            <MenuItem onClick={handleClose}>Tussendoortjes</MenuItem>
+          </Link>
+        </Menu>
+
+        <Breadcrumbs
+          className="breadcrumbs"
+          aria-label="breadcrumb"
+          sx={{ flexGrow: 1 }}
+        >
           <Link underline="hover" color="white" href="/">
-            <Typography color="white" variant="h6" component="span">
-              Recepten
-            </Typography>
+            <HomeIcon />
           </Link>
           {category && (
             <Link
@@ -107,6 +111,7 @@ const TitleBar = ({ title, category }) => {
           )}
           {title && <Typography color="white">{title}</Typography>}
         </Breadcrumbs>
+
         {user && <Typography>Hallo, {user.displayName}</Typography>}
         <Dashboard />
       </Toolbar>
