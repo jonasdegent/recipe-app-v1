@@ -6,6 +6,9 @@ import "./RecipeDetail.css";
 import TitleBar from "../components/Header/TitleBar";
 import IngredientsList from "../components/Recipes/IngredientsList";
 
+// Custom hooks
+import { useCollection } from "../hooks/Firestore/useCollection";
+
 //Material UI
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -14,8 +17,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 const RecipeDetail = () => {
   let { id } = useParams();
   const { data } = useDocument("recipes", id);
+  const { documents: allergens } = useCollection("allergens");
 
-  if (!data) {
+  if ((!data, !allergens)) {
     return (
       <>
         <TitleBar />
@@ -26,6 +30,12 @@ const RecipeDetail = () => {
     );
   }
 
+  const filteredAllergens = allergens.filter((allergen) => {
+    return data.allergens.find((selected) => selected === allergen.name);
+  });
+
+  console.log(filteredAllergens);
+
   return (
     <>
       <TitleBar title={data.title} category={data.category} />
@@ -33,12 +43,26 @@ const RecipeDetail = () => {
         <div className="recipe-detail-container">
           <div className="recipe-detail-left-content">
             <div className="recipe-detail-header">
-              <Typography variant="h3">{data.title}</Typography>
-              <Typography sx={{ fontStyle: "italic" }} variant="subtitle">
-                {data.subtitle}
-              </Typography>
+              <span>
+                <Typography variant="h3">{data.title}</Typography>
+                <Typography sx={{ fontStyle: "italic" }} variant="subtitle">
+                  {data.subtitle}
+                </Typography>
+              </span>
+              <div className="recipe-detail-allergens-header">
+                {filteredAllergens.map((allergen, i) => (
+                  <div className="recipe-detail-allergens-list">
+                    <img
+                      key={i}
+                      className="recipe-detail-icon-allergen"
+                      src={allergen.imageUrl}
+                      alt={`icoon van het allergeen ${allergen.name}`}
+                    />
+                    <p>{allergen.name}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div>Icons allergens</div>
             <Typography variant="h4">Hoe maak je het?</Typography>
             <ol className="recipe-detail-steps">
               {data.recipeSteps.map((recipeStep) => (

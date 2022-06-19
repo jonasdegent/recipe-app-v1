@@ -34,7 +34,8 @@ img {
 .recipe-detail-header {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1em;
+  align-items: flex-start;
+  margin-bottom: 0.5em;
 }
 
 .recipe-detail-ingredients {
@@ -57,4 +58,36 @@ img {
 
 .recipe-detail-ingredients-name {
   font-weight: 700;
+}
+
+.recipe-detail-icon-allergen {
+  width: 30px;
+  height: 30px;
+  margin-bottom: -0.75em;
+}
+.recipe-detail-allergens-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+  margin-right: 1em;
+}
+
+.recipe-detail-allergens-header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width: 1000px) {
+  .recipe-detail-header {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2em;
+  }
+  .recipe-detail-allergens-list {
+    margin-top: 0;
+  }
+  .recipe-detail-icon-allergen {
+    margin-bottom: -0.75em;
+  }
 }
