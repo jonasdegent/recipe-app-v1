@@ -9,7 +9,8 @@ gantt
     section Design
     Ideeën verzamelen Dribble       :a1, 22-04-2022, 1d
     Opmaak Adobe XD                 :a2, 23-04-2022, 3d
-    Database model                  :a3, 10-05-2022, 10d
+    Database model                  :a3, 30-04-2022, 10d
+    Iteration Database model        :after b8,1d
     section Development
     HTML opmaak en css                  :b1, 01-05-2022, 19-06-2022
     Authorization Context               :b2, 20-05-2022, 5d
@@ -22,7 +23,7 @@ gantt
     Detail pagina per recept            :b7, 10-06-2022, 19-06-2022
     IngredientsList                     :b8, 11-06-2022, 19-06-2022
     Maken van AddRecipeForm             :b9, 08-06-2022, 16-06-2022
-    Maken van EditRecipeForm            :b10, 15-06-2022, 17-06-2022
+    Maken van EditRecipeForm            :b10, 10-06-2022, 18-06-2022
 
     section Handover
     
