@@ -1,3 +1,5 @@
+https://mermaid.live/edit#pako:eNqFlktzmzAQx7_KDmfc8ojthFsmbpN0kkvSmbYzvgi0xpqARCXhNO30u3dlHjbGpDrZoN9q__sSf7xMcfQSL2fS2rUEWlbYAuEJM1EhXFcVzOCLkszACuEWZbuLM4uflS6ZBVitZo-Psx-0mndP-LMWGkvabCBndosaeQKlKNBYJdGHMvQhWM6CeBYFUeRHpZANukIjcgkbIVkhzCkV-RAHs-BiTO2wUJU7cAqNfQivZsHiFDWYWaHkwOfmzfB941jz7HYvCQRHFxUt0pQCdrQSRvKiqHcUQt6A3-iEjWYlxZWrFOH7CmAI0uYoPoBxCz4qxVPFNIfzK2HxEOxOXDHLUmYQSspzcQ68GMQUwqAl7y1q1kg_ayNhG9oBxHdnHULVZ6M1JYUVlJTfjb3zCtKAFCzHCu6-Pj7Aax84JjlkxpzCrp7CWTDv4D7VjZFrzuG6tlulOydulLT4yw6MEEgWeiPz1oPPdPhef1ZTNZWwVerFjNyPm5TPTzL3pGorZA7vrSSlJERXB-1Rp12R4orl-C48J-DI7T6DTnTTxjeTlZOkC6IvD3R39Fc3BVKm9wHfIuOU6zG8bHLWwp3mFVomisbxijiNGVb2lL10rvYdOUrZvcxpagjXjw_C2AnvQ6qaMJy2QjFoQuBm1WQEQyqf8DiEi6GVT1zY_5khKwOSfl-OizCjsZlTFaKBTBVF2zEDK_EgneFRMhkBOkc5wTr4onHhDLxhOzrXopmOAhVSfGiiD_Mj2mxVVbk6LoR8ebZvBY7ohR8ue_HHJxvUO0LJa1ZkdbHvPzNkl1OsKwEqHwuvW5TAOP9ID6yrKHc77dnLKZYGUP1-24VX_iFJPXvz_AyGJDq5Gk1F3ordSG8UnGO7GXhHbaN2qNs-dv82G-BH99TImywcXFGHEY6lgv-sJIuaCdLD25OZrLLaHbsPfnunsBdqTxLYPT5nl7c32eJkrHm-VyLd_oLTx8Mf92zt0aVY4tpL6Cdn-mXtreVf2ldX7lvBtZDSXrJhhUHfY7VVz28y8xKra-w2rQTLacq3u_7-AzZHMFY
+
 gantt
     title Recipe App - Jonas De Gent
     dateFormat  DD-MM-YYYY
@@ -7,24 +9,36 @@ gantt
     section Requirements
     
     section Design
-    Ideeën verzamelen Dribble       :a1, 22-04-2022, 1d
-    Opmaak Adobe XD                 :a2, 23-04-2022, 3d
-    Database model                  :a3, 30-04-2022, 10d
-    Iteration Database model        :after b8,1d
+    Gather ideas Dribble            :a1, 22-04-2022, 1d
+    Wireframe Adobe XD              :a2, 23-04-2022, 3d
+    Moodboard                       :a3, 23-04-2022, 1d
+    Database model                  :a4, 30-04-2022, 10d
+    Iteration Database model        :after a4,1d
     section Development
-    HTML opmaak en css                  :b1, 01-05-2022, 19-06-2022
-    Authorization Context               :b2, 20-05-2022, 5d
+    Initialization                      :b0, 27-04-2022, 1d
+    HTML wireframe and css              :b1, 01-05-2022, 19-06-2022
+    Add Authorization Context           :b2, 05-05-2022, 5d
     Firebase custom hooks               :b3, 22-05-2022, 3d
-    Routing                   :b4, 19-05-2022, 2d
-    Home page                        :b4, 25-05-2022, 10d
-    Maken van Recipe list               :b5, 26-05-2022, 2d
-    maken van individuele RecipeCard    :b11, 28-05-2022, 2d
-    Titlebar and header                 :b6, 27-05-2022,3d
-    Detail pagina per recept            :b7, 10-06-2022, 19-06-2022
-    IngredientsList                     :b8, 11-06-2022, 19-06-2022
-    Maken van AddRecipeForm             :b9, 08-06-2022, 16-06-2022
-    Maken van EditRecipeForm            :b10, 10-06-2022, 18-06-2022
-
+    Routing                             :b4, 29-04-2022, 2d
+    Home page                           :b5, 25-05-2022, 10d
+    Add RecipeCard                      :b6, 28-05-2022, 2d
+    Titlebar and header                 :b7, 27-05-2022,3d
+    Detail page per recept              :b8, 10-06-2022, 19-06-2022
+    IngredientsList                     :b10, 11-06-2022, 19-06-2022
+    AddRecipeForm                       :b11, 15-05-2022, 16-06-2022
+    EditRecipeForm                      :b12, 16-06-2022, 18-06-2022
+    Add categories collection           :b13, 25-05-2022,1d
+    Add allergens collection            :b14, 16-05-2022,1d
+    Add favorites                       :b15, 31-05-2022,.5d
+    Add shopping linkStyle              :b16,17-06-2022,1d
+    Add servings calculations           :b17,17-06-2022,1d
+    Add redirect when add/edit recipe   :b18,17-06-2022,1d
+    Add menu                            :b19,18-06-2022,1d
+    CSS styling responsive              :b20,18-06-2022,1d
     section Handover
-    
+    Handoff development                 :c1, 19-06-2022, 1d
+    Demo                                :c2, 29-06-2022, 1h
     section Documentation
+    Make presentation                   :d1, 22-06-2022, 3d
+    Gantt Chart                         :d2, 20-06-2022, 1d
+    Budget calculations                 :d3, 20-06-2022, 1d
